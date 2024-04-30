@@ -3,7 +3,7 @@ import logging
 
 from llm import LLM
 from retriever import Retriever
-from prompt_template import PromptConfig
+from prompt_config import PromptConfig
 from botocore.exceptions import ClientError
 
 
