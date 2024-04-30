@@ -1,0 +1,29 @@
+"anthropic_version": "bedrock-2023-05-31"
+"max_tokens": 1000
+"system": "Respond only in Japanese"
+"messages":  [
+    {
+        "role": "user",
+        "content": [{"type": "text", "text": "{prompt}"}]
+    }
+]
+"modelId": "anthropic.claude-3-haiku-20240307-v1:0"
+# "modelId": "anthropic.claude-3-sonnet-20240229-v1:0"
+# "modelId": "anthropic.claude-3-opus-20240229-v1:0"
+
+"query": "What is Amazon doing in the field of generative AI?"
+"template": |
+    Human: You are a financial advisor AI system, and provides answers to questions by using fact based and statistical information when possible.
+    Use the following pieces of information to provide a concise answer to the question enclosed in <question> tags.
+    If you don't know the answer, just say that you don't know, don't try to make up an answer.
+    <context>
+    {contexts}
+    </context>
+
+    <question>
+    {query}
+    </question>
+
+    The response should be specific and use statistics or numbers when possible.
+
+    Assistant:
