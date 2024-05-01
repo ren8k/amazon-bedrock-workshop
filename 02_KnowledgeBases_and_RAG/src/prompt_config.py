@@ -1,16 +1,18 @@
 import copy
-import yaml
 from typing import Any
 
+import yaml
 
-class PromptConfig():
-    def __init__(self, config_path, template_path):
+
+class PromptConfig:
+    def __init__(self, config_path, template_path, query_path):
         self.config = self._load_config(config_path)
         self.config_org = copy.deepcopy(self.config)
         self.template = self._load_config(template_path)["template"]
-        self.query = self.config.pop("query")
-        self.model_id = self.config.pop("modelId")
+        self.query = self._load_config(query_path)["query"]
+        self.model_id = self.config.pop("model_id")
         self.prompt = ""
+        self.is_streaming = self.config.pop("streaming")
 
     def _load_config(self, config_path):
         with open(config_path, "r") as file:
