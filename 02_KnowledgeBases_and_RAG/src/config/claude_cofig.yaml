@@ -7,8 +7,7 @@
         "content": [{"type": "text", "text": "{prompt}"}]
     }
 ]
-"modelId": "anthropic.claude-3-haiku-20240307-v1:0"
-# "modelId": "anthropic.claude-3-sonnet-20240229-v1:0"
-# "modelId": "anthropic.claude-3-opus-20240229-v1:0"
-
-"query": "What is Amazon doing in the field of generative AI?"
+"stop_sequences": ['</output>']
+"model_id": "anthropic.claude-3-haiku-20240307-v1:0"
+# "model_id": "anthropic.claude-3-sonnet-20240229-v1:0"
+# "model_id": "anthropic.claude-3-opus-20240229-v1:0"
