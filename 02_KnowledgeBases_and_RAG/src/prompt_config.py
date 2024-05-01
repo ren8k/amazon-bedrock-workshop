@@ -12,7 +12,7 @@ class PromptConfig:
         self.query = self._load_config(query_path)["query"]
         self.model_id = self.config.pop("model_id")
         self.prompt = ""
-        self.is_streaming = self.config.pop("streaming")
+        self.is_stream = self.config.pop("stream")
 
     def _load_config(self, config_path):
         with open(config_path, "r") as file:
@@ -22,5 +22,15 @@ class PromptConfig:
         self.prompt = self.template.format(**args)
 
     def format_message(self, args):
+        if "claude-3" in self.model_id:
+            self._format_message_claude3(args)
+        elif "command-r-plus" in self.model_id:
+            self._format_message_command_r_plus(args)
+
+    def _format_message_claude3(self, args):
         message = self.config["messages"][0]["content"][0]["text"]
         self.config["messages"][0]["content"][0]["text"] = message.format(**args)
+
+    def _format_message_command_r_plus(self, args):
+        message = self.config["message"]
+        self.config["message"] = message.format(**args)

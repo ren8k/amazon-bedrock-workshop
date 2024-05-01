@@ -9,17 +9,21 @@ from retriever import Retriever
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
+# TODO: 引用部分の提示
+# TODO: format部分のvalidation
+# TODO: Knowlwdge baseのIaC化
 
 def main():
     kb_id = "7BVHEOMVBK"
     region = "us-west-2"
     config_path = "./config/claude-3_cofig.yaml"
+    # config_path = "./config/command-r-plus_config.yaml"
     template_path = "./config/prompt_template.yaml"
     query_path = "./config/query.yaml"
 
     prompt_conf = PromptConfig(config_path, template_path, query_path)
     retriever = Retriever(kb_id, region)
-    llm = LLM(region)
+    llm = LLM(region, prompt_conf.is_stream)
 
     retrieval_results = retriever.retrieve(prompt_conf.query)
     contexts = retriever.get_contexts(retrieval_results)
@@ -28,7 +32,7 @@ def main():
     body = json.dumps(prompt_conf.config)
 
     try:
-        llm.generate(body, prompt_conf.model_id, prompt_conf.is_streaming)
+        llm.generate(body, prompt_conf.model_id)
     except ClientError as err:
         message = err.response["Error"]["Message"]
         logger.error("A client error occurred: %s", message)
