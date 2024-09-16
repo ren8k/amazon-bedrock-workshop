@@ -16,10 +16,10 @@ logging.basicConfig(level=logging.INFO)
 def main():
     kb_id = "7BVHEOMVBK"
     region = "us-west-2"
-    config_path = "./config/claude-3_cofig.yaml"
-    # config_path = "./config/command-r-plus_config.yaml"
-    template_path = "./config/prompt_template.yaml"
-    query_path = "./config/query.yaml"
+    config_path = "./config/llm/claude-3_cofig.yaml"
+    # config_path = "./config/llm/command-r-plus_config.yaml"
+    template_path = "./config/prompt_template/prompt_template.yaml"
+    query_path = "./config/query/query.yaml"
 
     prompt_conf = PromptConfig(config_path, template_path, query_path)
     retriever = Retriever(kb_id, region)
